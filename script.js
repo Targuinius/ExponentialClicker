@@ -183,9 +183,9 @@ for (var i = 0; i < buildings.length; i++) {
             break;
     }
 
-    html += "Cost: <span class='js-cost'>" + building.cost + "</span><br />Amount: <span class='js-amount'>" + building.amount + "</span>";
-    html2 = "+1 multiplier<br />" + "Cost: <span class='js-cost'>" + buildingUpgrade.cost + "</span><br />" + "Amount: <span class='js-amount'>" + buildingUpgrade.amount + "</span><br />";
-    html3 = "+1 multiplier<br />" + "Cost: <span class='js-cost'>" + buildingUpgrade2.cost + "</span><br />" + "Amount: <span class='js-amount'>" + buildingUpgrade2.amount + "</span><br />";
+    html += "Cost: <span class='js-cost'>" + prettify(building.cost) + "</span><br />Amount: <span class='js-amount'>" + building.amount + "</span>";
+    html2 = "+1 multiplier<br />" + "Cost: <span class='js-cost'>" + prettify(buildingUpgrade.cost) + "</span><br />" + "Amount: <span class='js-amount'>" + buildingUpgrade.amount + "</span><br />";
+    html3 = "+1 multiplier<br />" + "Cost: <span class='js-cost'>" + prettify(buildingUpgrade2.cost) + "</span><br />" + "Amount: <span class='js-amount'>" + buildingUpgrade2.amount + "</span><br />";
 
     buildingElement.className = "button";
     buildingElement.innerHTML = html;
@@ -290,7 +290,7 @@ function prettify(input) {
 
 function incrementClick(number) {
     power += number/* * ((prestigeVar / 1000) + 1)*/;
-	elements.perSecond.innerText = prettify(power);
+	elements.perSecond.innerHTML = prettify(power);
     updateGui();
 }
 
@@ -362,17 +362,17 @@ function buildingUpgrade2Click(buildingUpgrade2) {
 //}
 
 function updateGui() {
-	elements.score.innerText = prettify(score);
-	elements.perSecond.innerText = prettify(power + getBuildingPower());
-	elements.powerPerClick.innerText = prettify(powerPerClick)/* * ((prestigeVar / 1000) + 1))*/;
-//    elements.prestige.innerText = prettify(prestigeVar);
-//    elements.prestigeNext.innerText = prettify(Math.floor(totalScore / 1000000000));
+	elements.score.innerHTML = prettify(score);
+	elements.perSecond.innerHTML = prettify(power + getBuildingPower());
+	elements.powerPerClick.innerHTML = prettify(powerPerClick)/* * ((prestigeVar / 1000) + 1))*/;
+//    elements.prestige.innerHTML = prettify(prestigeVar);
+//    elements.prestigeNext.innerHTML = prettify(Math.floor(totalScore / 1000000000));
 		
 	upgrades.forEach(function (upgrade) {
 		upgrade.element.disabled = upgrade.cost > score;
 	
-		upgrade.element.querySelector(".js-power-per-click").innerText = prettify(upgrade.powerPerClick);
-		upgrade.element.querySelector(".js-cost").innerText = prettify(upgrade.cost);
+		upgrade.element.querySelector(".js-power-per-click").innerHTML = prettify(upgrade.powerPerClick);
+		upgrade.element.querySelector(".js-cost").innerHTML = prettify(upgrade.cost);
 	});
 	
 	buildings.forEach(function (building) {
@@ -383,14 +383,14 @@ function updateGui() {
         buildingUpgrade.element.disabled = buildingUpgrade.cost > score;
         buildingUpgrade2.element.disabled = buildingUpgrade2.cost > score;
 		
-		building.element.querySelector(".js-cost").innerText = prettify(building.cost);
-		building.element.querySelector(".js-amount").innerText = prettify(Math.floor(building.amount));
+		building.element.querySelector(".js-cost").innerHTML = prettify(building.cost);
+		building.element.querySelector(".js-amount").innerHTML = prettify(Math.floor(building.amount));
 		
-		buildingUpgrade.element.querySelector(".js-cost").innerText = prettify(buildingUpgrade.cost);
-		buildingUpgrade.element.querySelector(".js-amount").innerText = prettify(Math.floor(buildingUpgrade.amount));
+		buildingUpgrade.element.querySelector(".js-cost").innerHTML = prettify(buildingUpgrade.cost);
+		buildingUpgrade.element.querySelector(".js-amount").innerHTML = prettify(Math.floor(buildingUpgrade.amount));
         
-        buildingUpgrade2.element.querySelector(".js-cost").innerText = prettify(buildingUpgrade2.cost);
-        buildingUpgrade2.element.querySelector(".js-amount").innerText = prettify(Math.floor(buildingUpgrade2.amount));
+        buildingUpgrade2.element.querySelector(".js-cost").innerHTML = prettify(buildingUpgrade2.cost);
+        buildingUpgrade2.element.querySelector(".js-amount").innerHTML = prettify(Math.floor(buildingUpgrade2.amount));
 	});
 }
 
