@@ -1,16 +1,4 @@
 // Game config
-function Upgrade(cost, powerPerClick) {
-    this.cost = cost;
-    this.powerPerClick = powerPerClick;
-}
-
-function Building(cost, amount, upgrades, action) {
-    this.cost = cost;
-    this.amount = amount;
-    this.upgrades = {
-        
-    }
-}
 var upgrades = [
     {
         cost: 10,
