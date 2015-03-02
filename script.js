@@ -295,10 +295,10 @@ function increment() {
 	
 		switch (building.action.type) {
 		case "score":
-            powerTemp += building.action.perSecond * amount * building.upgrades.multiplier/* * ((building.upgrades.amount + 1) * (building.upgrades.upgrades.amount + 1)) * ((prestigeVar / 1000) + 1)*/;
+            powerTemp += building.action.perSecond * amount * (building.upgrades.multiplier * building.upgrades.amount + 1)/* * ((building.upgrades.amount + 1) * (building.upgrades.upgrades.amount + 1)) * ((prestigeVar / 1000) + 1)*/;
             break;
 		case "building":
-            buildings[building.action.building].amount += building.action.perSecond * amount * delta * building.upgrades.multiplier/* * ((building.upgrades.amount + 1) + (building.upgrades.upgrades.amount + 1)) * ((prestigeVar / 1000) + 1)*/;
+            buildings[building.action.building].amount += building.action.perSecond * amount * delta * (building.upgrades.multiplier * building.upgrades.amount + 1)/* * ((building.upgrades.amount + 1) + (building.upgrades.upgrades.amount + 1)) * ((prestigeVar / 1000) + 1)*/;
 			break;
 		}
 	});
@@ -396,7 +396,7 @@ function getBuildingPower() {
 			return building.action.type == "score";
 		})
 		.reduce(function (value, building) {
-			return value + Math.floor(building.amount) * building.action.perSecond * (building.upgrades.multiplier * building.upgrades.amount);
+			return value + Math.floor(building.amount) * building.action.perSecond * (building.upgrades.multiplier * building.upgrades.amount + 1);
 		}, 0);
 }
 
