@@ -53,6 +53,7 @@ body {
 
 .js-tutorial-text.hidden {
     margin-top: -177px;
+    visibility: hidden;
 }
 
 /*
