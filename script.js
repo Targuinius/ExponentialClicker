@@ -268,9 +268,9 @@ function updateGui() {
 	$(".js-score").html(prettify(score));
 	$(".js-score-per-second").html(prettify(power + getBuildingPower()));
 	$(".js-power-per-click").html(prettify(powerPerClick)) * ((prestigeVar / 1000) + 1);
-//    elements.prestige.innerHTML = prettify(prestigeVar);
-//    elements.prestigeNext.innerHTML = prettify(Math.floor(totalScore / 1000000000));
-		
+	$(".js-prestige").html(prettify(prestigeVar));
+	$(".js-next-prestige").html(prettify(Math.floor(totalScore / 1000000000)))
+	
 	upgrades.forEach(function (upgrade) {
 		upgrade.element.disabled = upgrade.cost > score;
 	
