@@ -38,7 +38,7 @@ body {
 }
 
 .js-tutorial-text {
-    height: 137px;
+/*    height: 137px;*/
     margin: -10px;
     margin-bottom: 10px;
     padding: 15px;
@@ -48,19 +48,18 @@ body {
     
     line-height: 20px;
     
-    transition: margin-top 500ms ease-in-out;
+/*    transition: margin-top 500ms ease-in-out;*/
 }
 
 .js-tutorial-text.hidden {
-    margin-top: -177px;
-    visibility: hidden;
+/*    margin-top: -177px;*/
+    display: none;
 }
 
-/*
+#prestige-container, .js-tutorial-button, .js-reset-button {
+    float: right;
+}
+
 #prestige-container {
-    top: -50px;
-    float: right;
-}*/
-.js-tutorial-button {
-    float: right;
+    width: 152px;
 }
