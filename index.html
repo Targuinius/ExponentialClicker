@@ -4,46 +4,86 @@
 	<link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 <body>
-    <div class="js-tutorial-text">
-        Start out with clicking the big bad "Increment" button (I know, he's not all that big or bad, he's actually quite a nice guy!). This will start giving you 0.1 score per second.<br />
-        Keep on clicking and once you have enough, buy the first upgrade and click once again. What's that? So many more points? That's right! The first column will give your more of the so called "power" per click.<br />
-        The more power you have, the more points you gain per second.<br />
-        Then, once you have enough points you can buy things from the second column. The first building here will give you 10 power<br />
-        Now, this doesn't seem like too much, but once you get the second building, you all of a sudden gain one of the first building per second! This will go on and on until the sixth building.<br />
-        Now, the third and fourth row work a little different. These will add a multiplier to the upgrade above them. So for every upgrade you buy, you get +1 multiplier.<br />
-        That's about it, if you are annoyed with me, feel free to click the "Tutorial" button to get me out of your life. 
-    </div>
-    <button class="button js-reset-button">
-        Reset
-    </button>
-    <button class="button js-tutorial-button">
-        Tutorial
-    </button>
-    <div id="prestige-container">
-        <button class="button js-prestige-button">
+    <div class="js-tabs">
+        <button class="button-tabs js-clicking-tab-button">
+            Clicking
+        </button>
+        <button class="button-tabs js-automatic-tab-button">
+            Automatic
+        </button>
+        <button class="button-tabs js-prestige-tab-button">
             Prestige
-        </button> <br /><br />
-        <span class="prestige js-prestige">0</span> prestige <br />
-        <span class="next-prestige js-next-prestige">0</span> prestige on reset
+        </button>
+        <button class="button-tabs js-menu-tab-button">
+            Menu
+        </button>
     </div>
-    <button class="button js-increment-button">
-        Increment
-    </button>
-    <!--<button class="button js-save-button">
-        Save
-    </button>
-    <button class="button js-delete-save-button">
-        Delete save
-    </button>-->
-	<p class="js-info">
+    <p class="js-info">
 		<span class="js-score">0</span> <br />
 		<span class="js-score-per-second">0</span> per second <br />
 		+<span class="js-power-per-click">0.1</span>/s per click <br />
 	</p>
-	<div class="upgrades js-upgrades"></div>
-	<div class="buildings js-buildings"></div>
-	<div class="building-upgrades js-building-upgrades"></div>
-    <div class="building-upgrades-second js-building-upgrades-second"></div>
+    <div class="js-main">
+        <div class="js-scroll">
+            <div class="js-clicking">
+                <button class="button js-increment-button">
+                    Increment
+                </button>
+                <select id="increment-tier">
+                    <option value="additive">Additive</option>
+                    <option value="multiply">Multiply</option>
+                </select>
+                <br /><br /><br />
+            </div>
+            <div class="js-automatic">
+                <div class="buildings js-buildings"></div>
+                <div class="building-upgrades js-building-upgrades"></div>
+                <div class="building-upgrades-second js-building-upgrades-second"></div>
+            </div>
+            <div class="js-prestige">
+                <button class="button js-prestige-button">
+                    Prestige
+                </button>
+                <select id="reset-tier">
+                    <option value="first-prestige">Level 1</option>
+                    <option value="second-prestige">Level 2</option>
+                    <option value="third-prestige">Level 3</option>
+                    <option value="fourth-prestige">Level 4</option>
+                    <option value="fifth-prestige">Level 5</option>
+                </select>
+                <br /><br />
+                Current first prestige: <span class="first-prestige">0</span><br />
+                First prestige on reset: <span class="first-prestige-next">0</span><br />
+                Max first prestige: <span class="first-prestige-max"></span><br /><br />
+                
+                Current second prestige: <span class="second-prestige">0</span><br />
+                Second prestige on reset: <span class="second-prestige-next">0</span><br />
+                Max second prestige: <span class="second-prestige-max"></span><br /><br />
+                
+                Current third prestige: <span class="third-prestige">0</span><br />
+                Third prestige on reset: <span class="third-prestige-next">0</span><br />
+                Max third prestige: <span class="third-prestige-max"></span><br /><br />
+                
+                Current fourth prestige: <span class="fourth-prestige">0</span><br />
+                Fourth prestige on reset: <span class="fourth-prestige-next">0</span><br />
+                Max fourth prestige: <span class="fourth-prestige-max"></span><br /><br />
+                
+                Current fifth prestige: <span class="fifth-prestige">0</span><br />
+                Fifth prestige on reset: <span class="fifth-prestige-next">0</span><br />
+            </div>
+            <div class="js-menu">
+                <button class="button js-reset-button">
+                    Reset
+                </button>
+                <button class="button js-save-button">
+                    Save
+                </button>
+                <button class="button js-delete-save-button">
+                    Delete save
+                </button>
+            </div>
+        </div>
+    </div>
     <script type="text/javascript" src="jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="script.js"></script>
 </body>
