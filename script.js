@@ -479,7 +479,10 @@ window.setInterval(function () {
 }, 60000);
 
 $(".js-prestige-button").click(function() {reset($("#reset-tier").val())});
-$(".js-reset-button").click(function() {reset("full")})
+$(".js-reset-button").click(function() {reset("full")});
+$(".js-delete-save-button").click(function() {deleteSave()})
+$(".js-save-button").click(function() {save()})
+$(".js-load-button").click(function() {load()})
 $(".js-increment-button").click(function() {
     $(".js-increment-button").blur()
     incrementClick($("#increment-tier").val(), powerPerClick)
