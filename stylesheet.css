@@ -37,29 +37,68 @@ body {
 	box-shadow: none;
 }
 
-.js-tutorial-text {
-/*    height: 137px;*/
-    margin: -10px;
-    margin-bottom: 10px;
-    padding: 15px;
-    
-    border-radius: 2px;
-    background-color: #f2f2f2;
-    
-    line-height: 20px;
-    
-/*    transition: margin-top 500ms ease-in-out;*/
+.js-info {
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.js-tutorial-text.hidden {
-/*    margin-top: -177px;*/
-    display: none;
+.js-main {
+    height: 600px;
+    width: 1000px;
+    overflow: hidden;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
-#prestige-container, .js-tutorial-button, .js-reset-button {
-    float: right;
+.js-scroll {
+    position: absolute;
+    height: 600px;
+    width: 4000px;
 }
 
-#prestige-container {
-    width: 152px;
+.js-tabs, .button-tabs {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.js-tabs {
+    width: 1002px;
+}
+
+.js-scroll > * {
+    height: 600px;
+    width: 1000px;
+    float: left;
+}
+
+.button-tabs {
+    width: 247px;
+    height: 50px;
+    line-height: 30px;
+	
+	outline: 0;
+	border: 0;
+    border-radius: 4px;
+    background-color: #E3E3E3;
+    text-align: center;
+	
+    transition: all 150ms ease-in-out;
+}
+
+.button-tabs:hover {
+    box-shadow: 0 0 0 rgba(0,0,0,0.05),
+				0 1px 2px rgba(0,0,0,0.08);
+    background-color: #ddd;
+}
+
+.button-tabs:active {
+    box-shadow: 0 0 0 rgba(0,0,0,0.08),
+				0 1px 2px rgba(0,0,0,0.1);
+	background-color: #D0D0D0;
+}
+
+.button-tabs[disabled] {
+	background-color: #EFEFEF;
+	box-shadow: none;
 }
