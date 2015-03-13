@@ -3,22 +3,13 @@ var upgrades = [{},{},{},{},{},{}]
 var buildings = [{upgrades: {upgrades: {}}, action: {}},{upgrades: {upgrades: {}}, action: {}},{upgrades: {upgrades: {}}, action: {}},{upgrades: {upgrades: {}}, action: {}},{upgrades: {upgrades: {}}, action: {}},{upgrades: {upgrades: {}}, action: {}}]
 
 function setUpgrades() {
-    for(var i = 0; i < 3; i++) {
+    for(var i = 0; i < 6; i++) {
         if (i == 0) {
             upgrades[i].cost = 10;
             upgrades[i].powerPerClick = 0.3;
         } else {
             upgrades[i].cost = upgrades[i-1].cost * 3;
             upgrades[i].powerPerClick = upgrades[i-1].powerPerClick * 2;
-        }
-    }
-    for(var i = 3; i < 6; i++) {
-        if (i == 3) {
-            upgrades[i].cost = 1000;
-            upgrades[i].multiplyPerClick = 0.01;
-        } else {
-            upgrades[i].cost = upgrades[i-1].cost * 3;
-            upgrades[i].multiplyPerClick= upgrades[i-1].multiplyPerClick * 2;
         }
     }
 }
@@ -52,14 +43,9 @@ for (var i = 0; i < upgrades.length; i++) {
     var upgrade = upgrades[i];
     var upgradeElement = document.createElement("button");
     upgrade.element = upgradeElement;
-    if (upgrades[i].powerPerClick !== undefined) {
-        upgradeElement.className = "button";
-        upgradeElement.innerHTML = "+<span class='js-upgrade-power-per-click'>" + upgrade.powerPerClick + "</span>/s per click<br />" + "Cost: <span class='js-cost'>" + upgrade.cost + "</span>";
-    } else {
-        upgradeElement.className = "button";
-        upgradeElement.innerHTML = "x<span class='js-upgrade-multiply-per-click'>" + upgrade.multiplyPerClick + "</span> power/click/click<br />" + "Cost: <span class='js-cost'>" + upgrade.cost + "</span>";
-    }
-
+    upgradeElement.className = "button";
+    upgradeElement.innerHTML = "+<span class='js-upgrade-power-per-click'>" + upgrade.powerPerClick + "</span>/s per click<br />" + "Cost: <span class='js-cost'>" + upgrade.cost + "</span>";
+    
     $(".js-clicking").append(upgradeElement)
 }
 
@@ -108,14 +94,13 @@ var score = 0;
 var totalScore = 0;
 var power = 0; // = scorePerSecond
 var powerPerClick = 0.1;
-var multiplyPerClick = 1.05;
 var prestigeVar;
 function setPrestige() {
     prestigeVar = [
         0,
-        100000,
+        1000,
         0,
-        10000,
+        1000,
         0,
         1000,
         0,
@@ -138,11 +123,7 @@ function save() {
         saveBuildings[i].upgrades.cost = buildings[i].upgrades.cost;
         saveBuildings[i].upgrades.upgrades.cost = buildings[i].upgrades.upgrades.cost;
         saveUpgrades[i].cost = upgrades[i].cost;
-        if (upgrades[i].powerPerClick !== undefined) {
-            saveUpgrades[i].powerPerClick = upgrades[i].powerPerClick;
-        } else {
-            saveUpgrades[i].multiplyPerClick = upgrades[i].multiplyPerClick;
-        }
+        saveUpgrades[i].powerPerClick = upgrades[i].powerPerClick;
     }
     var saveVar = {
         score: score,
@@ -178,11 +159,7 @@ function load() {
         if (typeof savegame.upgrades !== "undefined") {
             for(var i = 0; i < 6; i++) {
                 upgrades[i].cost = savegame.upgrades[i].cost;
-                if (powerPerClick !== undefined) {
-                    upgrades[i].powerPerClick = savegame.upgrades[i].powerPerClick;
-                } else {
-                    upgrades[i].multiplyPerClick = savegame.upgrades[i].multiplyPerClick;
-                }
+                upgrades[i].powerPerClick = savegame.upgrades[i].powerPerClick;
             }
         }
     }
@@ -207,14 +184,14 @@ function reset(type) {
             setBuildings();
             break;
         case "second-prestige":
-            prestigeVar[2] = prestigeVar[0] / 1000;
+            prestigeVar[2] = prestigeVar[0] / 10;
             prestigeVar[0] = 0;
             if (prestigeVar[2] > prestigeVar[3]) {
                 prestigeVar[2] = prestigeVar[3];
             }
             break;
         case "third-prestige":
-            prestigeVar[4] = prestigeVar[2] / 100;
+            prestigeVar[4] = prestigeVar[2] / 10;
             prestigeVar[2] = 0;
             if (prestigeVar[4] > prestigeVar[5]) {
                 prestigeVar[4] = prestigeVar[5];
@@ -236,7 +213,6 @@ function reset(type) {
             totalScore = 0;
             power = 0;
             powerPerClick = 0.1;
-            multiplyPerClick = 1.05;
             setUpgrades();
             setBuildings();
             setPrestige();
@@ -332,12 +308,8 @@ function prettify(input) {
     }
 }
 
-function incrementClick(tier) {
-    if (tier == "additive") {
-        power += powerPerClick * ((prestigeVar[0] / 1000) + 1);
-    } else {
-        powerPerClick *= multiplyPerClick * ((prestigeVar[0] / 1000) + 1)
-    }
+function incrementClick() {
+    power += powerPerClick * ((prestigeVar[0] / 1000) + 1);
     updateGui();
 }
 
@@ -360,8 +332,8 @@ function increment() {
 
 	score += powerTemp * delta;
 	totalScore += powerTemp * delta;
-    prestigeVar[1] = prestigeVar[2] + 100000;
-    prestigeVar[3] = prestigeVar[4] + 10000;
+    prestigeVar[1] = prestigeVar[2] + 1000;
+    prestigeVar[3] = prestigeVar[4] + 1000;
     prestigeVar[5] = prestigeVar[6] + 1000;
     prestigeVar[7] = prestigeVar[8] + 1000;
 	updateGui();
@@ -369,14 +341,10 @@ function increment() {
 
 function upgradeClick(upgrade) {
     if (score >= upgrade.cost){
-        if (upgrade.powerPerClick !== undefined) {
-            powerPerClick += upgrade.powerPerClick;
-            upgrade.powerPerClick *= 2;
-        } else {
-            multiplyPerClick += upgrade.multiplyPerClick;
-            upgrade.multiplyPerClick *= 1.05;
-        }
-		score -= upgrade.cost;
+        score -= upgrade.cost;
+        
+        powerPerClick += upgrade.powerPerClick;
+        upgrade.powerPerClick *= 2;
         upgrade.cost *= 3;
     }
 }
@@ -430,11 +398,7 @@ function updateGui() {
 		
 	upgrades.forEach(function (upgrade) {
         upgrade.element.disabled = upgrade.cost > score;
-        if (upgrade.powerPerClick !== undefined) {
-            upgrade.element.querySelector(".js-upgrade-power-per-click").innerHTML = prettify(upgrade.powerPerClick);
-        } else {
-            upgrade.element.querySelector(".js-upgrade-multiply-per-click").innerHTML = prettify(upgrade.multiplyPerClick);
-        }
+        upgrade.element.querySelector(".js-upgrade-power-per-click").innerHTML = prettify(upgrade.powerPerClick);
 		upgrade.element.querySelector(".js-cost").innerHTML = prettify(upgrade.cost);
 	});
 	
@@ -479,13 +443,10 @@ window.setInterval(function () {
 }, 60000);
 
 $(".js-prestige-button").click(function() {reset($("#reset-tier").val())});
-$(".js-reset-button").click(function() {reset("full")});
-$(".js-delete-save-button").click(function() {deleteSave()})
-$(".js-save-button").click(function() {save()})
-$(".js-load-button").click(function() {load()})
+$(".js-reset-button").click(function() {reset("full")})
 $(".js-increment-button").click(function() {
     $(".js-increment-button").blur()
-    incrementClick($("#increment-tier").val(), powerPerClick)
+    incrementClick()
 });
 $(".js-clicking-tab-button").click(function() {
     $(".js-scroll").animate({
