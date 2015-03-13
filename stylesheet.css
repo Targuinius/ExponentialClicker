@@ -44,7 +44,7 @@ body {
 }
 
 .js-main {
-    height: 600px;
+    height: 400px;
     width: 1000px;
     overflow: hidden;
     border: 1px solid black;
@@ -53,7 +53,7 @@ body {
 
 .js-scroll {
     position: absolute;
-    height: 600px;
+    height: 400px;
     width: 4000px;
 }
 
@@ -67,7 +67,7 @@ body {
 }
 
 .js-scroll > * {
-    height: 600px;
+    height: 400px;
     width: 1000px;
     float: left;
 }
