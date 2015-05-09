@@ -172,7 +172,7 @@ function deleteSave() { localStorage.removeItem("ECsave"); }
 function reset(type) {
     switch (type) {
         case "first-prestige":
-            prestigeVar[0] = totalScore / 1000000000;
+            prestigeVar[0] += totalScore / 1000000000;
             if (prestigeVar[0] > prestigeVar[1]) {
                 prestigeVar[0] = prestigeVar[1];
             }
@@ -184,28 +184,28 @@ function reset(type) {
             setBuildings();
             break;
         case "second-prestige":
-            prestigeVar[2] = prestigeVar[0] / 10;
+            prestigeVar[2] += prestigeVar[0] / 10;
             prestigeVar[0] = 0;
             if (prestigeVar[2] > prestigeVar[3]) {
                 prestigeVar[2] = prestigeVar[3];
             }
             break;
         case "third-prestige":
-            prestigeVar[4] = prestigeVar[2] / 10;
+            prestigeVar[4] += prestigeVar[2] / 10;
             prestigeVar[2] = 0;
             if (prestigeVar[4] > prestigeVar[5]) {
                 prestigeVar[4] = prestigeVar[5];
             }
             break;
         case "fourth-prestige":
-            prestigeVar[6] = prestigeVar[4] / 10;
+            prestigeVar[6] += prestigeVar[4] / 10;
             prestigeVar[4] = 0;
             if (prestigeVar[6] > prestigeVar[7]) {
                 prestigeVar[6] = prestigeVar[7];
             }
             break;
         case "fifth-prestige":
-            prestigeVar[8] = prestigeVar[6] / 10;
+            prestigeVar[8] += prestigeVar[6] / 10;
             prestigeVar[6] = 0;
             break;
         case "full":
